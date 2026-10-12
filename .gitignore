@@ -1,0 +1,4 @@
+build/*.bin
+build/*.img
+__pycache__/
+*.log
