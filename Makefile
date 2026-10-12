@@ -6,9 +6,10 @@ MBR := $(BUILD)/mbr.bin
 VBR_MBR := $(BUILD)/vbr_mbr.bin
 KERNEL := $(BUILD)/kernel.bin
 CMOS := $(BUILD)/cmos.bin
+OOP_DEMO := $(BUILD)/oop-counter.bin
 IMAGE := $(BUILD)/floppy.img
 
-.PHONY: all components image run verify mbr-image clean
+.PHONY: all components image run verify mbr-image lint scripted-build oop-demo clean
 all: image
 
 $(BUILD):
@@ -36,7 +37,10 @@ $(KERNEL): os/kernel.asm | $(BUILD)
 $(CMOS): firmware/cmos.asm | $(BUILD)
 	$(NASM) -f bin $< -o $@
 
-components: $(BOOT) $(STAGE2) $(MBR) $(VBR_MBR) $(KERNEL) $(CMOS)
+$(OOP_DEMO): examples/oop_counter.asm | $(BUILD)
+	$(NASM) -f bin $< -o $@
+
+components: $(BOOT) $(STAGE2) $(MBR) $(VBR_MBR) $(KERNEL) $(CMOS) $(OOP_DEMO)
 
 image: $(BOOT) $(STAGE2)
 	dd if=/dev/zero of=$(IMAGE) bs=512 count=2880 status=none
@@ -54,5 +58,14 @@ verify: image
 mbr-image: components
 	python3 tools/make_mbr_image.py
 
+scripted-build:
+	python3 scripts/build.py
+
+lint:
+	python3 scripts/menu_lint.py
+
+oop-demo: $(OOP_DEMO)
+	@echo "Built standalone demo at $(OOP_DEMO); it needs a loader to execute."
+
 clean:
-	rm -f $(BOOT) $(STAGE2) $(MBR) $(VBR_MBR) $(KERNEL) $(CMOS) $(IMAGE) $(BUILD)/mbr-test.img
+	rm -f $(BOOT) $(STAGE2) $(MBR) $(VBR_MBR) $(KERNEL) $(CMOS) $(OOP_DEMO) $(IMAGE) $(BUILD)/mbr-test.img
