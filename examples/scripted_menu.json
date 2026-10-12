@@ -1,0 +1,26 @@
+{
+  "title": "FloppyBootSuite Scripted Menu",
+  "version": 1,
+  "menus": [
+    {
+      "id": "main",
+      "title": "MAIN MENU",
+      "entries": [
+        {"key": "1", "label": "Boot and loader options", "target": "boot"},
+        {"key": "2", "label": "Disk tools and image options", "target": "disk"},
+        {"key": "3", "label": "Modules and submodules", "target": "modules"},
+        {"key": "4", "label": "System information and diagnostics", "target": "diagnostics"},
+        {"key": "5", "label": "Help and keyboard controls", "target": "help"},
+        {"key": "Q", "label": "Reboot", "target": "reboot"}
+      ]
+    },
+    {
+      "id": "boot",
+      "title": "BOOT / LOADER OPTIONS",
+      "entries": [
+        {"key": "1", "label": "Stage 1 BIOS sector", "target": "info:stage1"},
+        {"key": "2", "label": "Stage 2 UI", "target": "info:stage2"}
+      ]
+    }
+  ]
+}
