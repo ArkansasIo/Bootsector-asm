@@ -12,7 +12,7 @@ LIB_DEMO := $(BUILD)/library-demo.bin
 OOP_DEMO := $(BUILD)/oop-counter.bin
 IMAGE := $(BUILD)/floppy.img
 
-.PHONY: all components image run verify mbr-image lint config-lint scripted-build oop-demo ide clean
+.PHONY: all components image run verify mbr-image lint config-lint scripted-build oop-demo ide app clean
 all: image
 
 $(BUILD):
@@ -78,6 +78,9 @@ config-lint:
 
 ide:
 	$(PYTHON) scripts/asm_ide.py
+
+app:
+	$(PYTHON) app.py
 
 oop-demo: $(OOP_DEMO)
 	@echo "Built standalone demo at $(OOP_DEMO); it needs a loader to execute."
