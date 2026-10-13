@@ -1,6 +1,7 @@
 ; Reads raw RTC registers via shared CMOS include; intended for emulator testing.
 BITS 16
 ORG 0x9000
+    jmp start
 %include "firmware/cmos.inc"
 %include "asm/lib/console.inc"
 %include "asm/lib/hex.inc"

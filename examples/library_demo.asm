@@ -1,6 +1,7 @@
 ; Demonstrates reusable console and hexadecimal includes.
 BITS 16
 ORG 0x9000
+    jmp start
 %include "asm/lib/console.inc"
 %include "asm/lib/hex.inc"
 start:
