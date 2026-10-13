@@ -1,0 +1,9 @@
+{
+  "app_name": "FloppyBootSuite Control Center",
+  "app_version": "1.0.0",
+  "api": {"host": "127.0.0.1", "port": 8765, "remote_access": false, "max_request_bytes": 16384},
+  "ui": {"theme": "dark", "default_view": "overview", "refresh_status_on_load": true},
+  "build": {"default_target": "components image", "verify_after_build": false, "command_timeout_seconds": 180},
+  "emulator": {"program": "qemu-system-i386", "image": "build/floppy.img", "automatic_launch": false},
+  "safety": {"allow_physical_disk_writes": false, "allow_cmos_writes": false, "api_bind_localhost_only": true}
+}
