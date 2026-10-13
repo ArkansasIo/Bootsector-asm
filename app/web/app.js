@@ -48,7 +48,7 @@ async function runCommand(command, button) {
   try {
     const result = await api("/api/commands", {method:"POST", body:JSON.stringify({command})});
     log("$ " + (result.command || command) + "\nExit code: " + result.returncode + "\n\n" + (result.output || result.error || "Completed."));
-    if (result.ok) await refreshStatus();
+    if (result.ok) { await refreshStatus(); log("$ " + (result.command || command) + "\nExit code: " + result.returncode + "\n\n" + (result.output || "Completed.")); }
   } catch (error) { log("Command failed: " + error.message); }
   finally { button.disabled = false; button.textContent = old; }
 }
