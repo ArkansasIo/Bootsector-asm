@@ -18,7 +18,7 @@ jobs:
       - name: Validate Python sources
         run: python3 -m py_compile scripts/build.py scripts/menu_lint.py scripts/config_lint.py scripts/asm_ide.py app.py api/server.py tests/test_app_api.py
       - name: Test local app API
-        run: python3 -m unittest tests.test_app_api
+        run: python3 -m unittest discover -s tests -p 'test_app_api.py'
       - name: Assemble declared targets
         run: python3 scripts/build.py
       - name: Validate configuration
