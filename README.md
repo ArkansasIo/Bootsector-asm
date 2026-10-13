@@ -26,6 +26,20 @@ make ide
 ```
 IDE shortcuts: Ctrl+O open, Ctrl+S save, F5 build, F6 lint, F9 run QEMU.
 
+## UI application and API
+
+Launch the browser-based control center and localhost JSON API:
+
+```sh
+python3 app.py
+# or
+make app
+```
+
+The dashboard opens at `http://127.0.0.1:8765`. Use `python3 app.py --no-browser` to suppress browser opening, or `python3 app.py --port 9000` to choose another local port. The API exposes health, toolchain status, project file inventory, settings, and allowlisted build/verify/lint/clean actions. API documentation: `docs/API_REFERENCE.md`.
+
+Launch the desktop Tkinter source editor through the same entry point with `python3 app.py --desktop`. See `docs/APP_GUIDE.md` for usage and safety notes. The API binds to localhost only and does not expose arbitrary shell commands, CMOS writes, or physical disk writes.
+
 ## Components
 - `boot/` — BIOS boot sector, MBR, and VBR
 - `stage2/stage2.asm` — text menu including BIOS/CMOS settings reference
