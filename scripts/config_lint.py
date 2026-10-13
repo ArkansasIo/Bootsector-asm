@@ -7,6 +7,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 FILES = [
     "config/boot_options.json",
+    "config/app_settings.json",
     "firmware/bios_profile.json",
     "firmware/cmos_registers.json",
     "examples/scripted_menu.json",
