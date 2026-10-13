@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "profile_name": "FloppyBootSuite BIOS defaults",
+  "firmware_model": "legacy_x86_bios",
+  "video": { "default_text_mode": "03h", "teletype_service": "INT 10h/AH=0Eh" },
+  "keyboard": { "read_key": "INT 16h/AH=00h", "check_key": "INT 16h/AH=01h" },
+  "disk": { "read_service": "INT 13h/AH=02h", "retry_count": 3, "physical_write_enabled": false },
+  "boot": { "stage2_segment": "0000h", "stage2_offset": "8000h", "stage2_max_bytes": 4096 },
+  "safety": { "target": "emulator images only" }
+}

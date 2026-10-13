@@ -11,6 +11,7 @@
         {"key": "3", "label": "Modules and submodules", "target": "modules"},
         {"key": "4", "label": "System information and diagnostics", "target": "diagnostics"},
         {"key": "5", "label": "Help and keyboard controls", "target": "help"},
+        {"key": "6", "label": "BIOS / CMOS settings reference", "target": "settings"},
         {"key": "Q", "label": "Reboot", "target": "reboot"}
       ]
     },
@@ -20,6 +21,15 @@
       "entries": [
         {"key": "1", "label": "Stage 1 BIOS sector", "target": "info:stage1"},
         {"key": "2", "label": "Stage 2 UI", "target": "info:stage2"}
+      ]
+    },
+    {
+      "id": "settings",
+      "title": "BIOS / CMOS SETTINGS",
+      "entries": [
+        {"key": "1", "label": "BIOS service defaults", "target": "config:firmware/bios_profile.json"},
+        {"key": "2", "label": "CMOS register map", "target": "config:firmware/cmos_registers.json"},
+        {"key": "3", "label": "Boot options", "target": "config:config/boot_options.json"}
       ]
     }
   ]

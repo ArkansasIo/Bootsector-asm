@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "ports": { "index": "0x70", "data": "0x71" },
+  "registers": {
+    "seconds": "0x00", "minutes": "0x02", "hours": "0x04",
+    "status_a": "0x0A", "status_b": "0x0B",
+    "status_c": "0x0C", "status_d": "0x0D"
+  },
+  "status_a": { "update_in_progress_mask": "0x80" },
+  "status_b": { "binary_mode_mask": "0x04", "24_hour_mode_mask": "0x02" },
+  "warning": "Register availability and encoding can vary by platform; avoid assuming CMOS bytes are writable."
+}

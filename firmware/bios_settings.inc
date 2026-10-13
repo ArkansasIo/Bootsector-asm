@@ -1,0 +1,14 @@
+; Build-time defaults for 16-bit legacy BIOS examples.
+%ifndef FLOPPY_BIOS_SETTINGS_INC
+%define FLOPPY_BIOS_SETTINGS_INC 1
+BIOS_VIDEO_TEXT_MODE equ 0x0003
+BIOS_VIDEO_TELETYP   equ 0x0E
+BIOS_KEYBOARD_INT    equ 0x16
+BIOS_DISK_INT        equ 0x13
+BIOS_VIDEO_INT       equ 0x10
+BIOS_BOOT_INT        equ 0x19
+BOOT_STAGE2_SEG      equ 0x0000
+BOOT_STAGE2_OFFSET   equ 0x8000
+BOOT_STAGE2_MAX_SIZE equ 4096
+BOOT_RETRY_COUNT     equ 3
+%endif

@@ -28,6 +28,8 @@ main_loop:
     je menu_system
     cmp al, '5'
     je menu_help
+    cmp al, '6'
+    je menu_settings
     cmp al, 'q'
     je reboot
     cmp al, 'Q'
@@ -75,6 +77,15 @@ menu_help:
     mov si, title_help
     call print_string
     mov si, help_options
+    call print_string
+    call wait_back
+    call draw_main
+    jmp main_loop
+menu_settings:
+    call clear_screen
+    mov si, title_settings
+    call print_string
+    mov si, settings_options
     call print_string
     call wait_back
     call draw_main
@@ -134,6 +145,7 @@ main_menu db " MAIN MENU",13,10,"  1. Boot and loader options",13,10
           db "  3. Modules and submodules",13,10
           db "  4. System information / diagnostics",13,10
           db "  5. Help and keyboard controls",13,10
+          db "  6. BIOS / CMOS settings reference",13,10
           db "  Q. Reboot",13,10,13,10,"Select an item by pressing its key.",13,10,0
 title_boot db 13,10,"[ BOOT / LOADER OPTIONS ]",13,10
            db " Stage 1: BIOS boot sector",13,10," Stage 2: text UI shell",13,10
@@ -152,11 +164,17 @@ title_system db 13,10,"[ SYSTEM INFORMATION ]",13,10
              db " Stage 2 load window: 0000:8000",13,10
              db " FAT12 parser: planned",13,10,0
 title_help db 13,10,"[ HELP / KEYBOARD ]",13,10
-           db " Press 1-5 to open a section.",13,10," Press B, Backspace, or Escape to return.",13,10
+           db " Press 1-6 to open a section.",13,10," Press B, Backspace, or Escape to return.",13,10
            db " Press Q from the main menu to reboot.",13,10,0
+title_settings db 13,10,"[ BIOS / CMOS SETTINGS REFERENCE ]",13,10
+               db " Video: text mode 03h; keyboard: INT 16h",13,10
+               db " Disk: BIOS INT 13h; retries are host-build defaults",13,10
+               db " CMOS/RTC reads are diagnostic only; writes disabled",13,10
+               db " JSON profiles describe defaults; not live hardware settings",13,10,0
 boot_options db 13,10,"Stage 1 reads stage 2 using BIOS INT 13h.",13,10,0
 disk_options db 13,10,"2880 sectors x 512 bytes = 1,474,560 bytes.",13,10,0
 module_options db 13,10,"Core, UI, disk services, diagnostics, host tools.",13,10,0
 system_options db 13,10,"Static build metadata only; full hardware tests are planned.",13,10,0
 help_options db 13,10,"Keyboard shortcuts: B / Backspace / ESC.",13,10,0
+settings_options db 13,10,"See config/boot_options.json and firmware/bios_profile.json.",13,10,0
 back_prompt db 13,10,"Press ESC, Backspace, or B to return...",13,10,0

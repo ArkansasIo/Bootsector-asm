@@ -11,14 +11,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install NASM
+      - name: Install NASM and tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y nasm make python3
+          sudo apt-get install -y nasm make python3 python3-tk
+      - name: Validate Python sources
+        run: python3 -m py_compile scripts/build.py scripts/menu_lint.py scripts/config_lint.py scripts/asm_ide.py
       - name: Assemble declared targets
         run: python3 scripts/build.py
-      - name: Validate scripted menu
-        run: python3 scripts/menu_lint.py
+      - name: Validate configuration
+        run: |
+          python3 scripts/menu_lint.py
+          python3 scripts/config_lint.py
       - name: Build floppy image
         run: make image
       - name: Verify floppy image

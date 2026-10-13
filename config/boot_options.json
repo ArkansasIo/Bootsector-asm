@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "profile": "safe-emulator-defaults",
+  "boot": {
+    "mode": "floppy",
+    "stage2_load_segment": "0x0000",
+    "stage2_load_offset": "0x8000",
+    "stage2_sector_count": 8,
+    "boot_retries": 3
+  },
+  "ui": { "video_mode": "0x0003", "show_diagnostics": true },
+  "firmware": { "read_cmos": false, "allow_disk_write": false },
+  "tools": { "qemu_machine": "pc", "qemu_memory_mb": 16 }
+}
