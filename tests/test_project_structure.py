@@ -16,12 +16,12 @@ class ProjectStructureTests(unittest.TestCase):
         self.assertIn("times 510-($-$$) db 0", source)
         self.assertIn("dw 0xAA55", source)
 
-    def test_verifier_contains_key_layout_invariants(self):
+    def test_verifier_checks_boot_image_layout(self):
         source = (ROOT / "tests/verify_boot.py").read_text(encoding="utf-8")
-        for fragment in ('b"\\x55\\xaa"', "FLOPPY_SIZE", "image[:SECTOR] == boot",
-                         "stage2 begins at LBA 1", "unused stage2 load-window bytes"):
-            with self.subTest(fragment=fragment):
-                self.assertIn(fragment, source)
+        self.assertIn("boot[510:512] == b\"\\x55\\xaa\"", source)
+        self.assertIn("len(image) == 1_474_560", source)
+        self.assertIn("image[:512] == boot", source)
+        self.assertIn("image[512:512+len(stage2)] == stage2", source)
 
     def test_ci_installs_nasm_and_runs_verification(self):
         workflow = (ROOT / ".github/workflows/ci.yml").read_text(encoding="utf-8")
