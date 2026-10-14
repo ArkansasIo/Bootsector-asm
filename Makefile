@@ -64,6 +64,9 @@ run: image
 verify: image
 	$(PYTHON) tests/verify_boot.py
 
+unit-tests:
+	$(PYTHON) -m unittest discover -s tests
+
 mbr-image: components
 	$(PYTHON) tools/make_mbr_image.py
 
